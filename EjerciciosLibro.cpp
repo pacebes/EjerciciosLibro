@@ -772,4 +772,7 @@ int main(int argc, char* argv[])
     }
     */
     test182();
+
+    cout << "Parche ejemplo con GIT en un rama (parte1) \n";
+
 }
