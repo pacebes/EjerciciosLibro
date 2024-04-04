@@ -94,6 +94,6 @@ task string_seq(string start)
 	while (true) {
 		cout << "value: " << value << '\n'; // communicate result
 		co_yield 0;
-		value+="0";
+		value+="00";
 	}
 }
