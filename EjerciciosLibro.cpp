@@ -777,4 +777,6 @@ int main(int argc, char* argv[])
 
     cout << "Parche ejemplo con GIT en un rama (parte2) \n";
 
+    cout << "Mensaje en la rama principal \n";
+
 }
