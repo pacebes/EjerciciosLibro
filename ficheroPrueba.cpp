@@ -74,7 +74,7 @@ task sequencer(int start, int step )
 	while (true) {
 		cout << "value: " << value << '\n'; // communicate a result
 		co_yield 0; // sleep until someone resumes this coroutine
-		value += step; // update state
+		value += 2*step; // update state
 	}
 }
 
