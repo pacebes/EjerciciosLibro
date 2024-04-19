@@ -1,8 +1,30 @@
 import Vector; // get Vector's interface
 import Complejo; 
+
+#ifdef __linux__ 
+import cmath;
+import filesystem;
+import vector;
+import string;
+import map;
+import complex;
+import list;
+import stdexcept;
+import regex;
+import fstream;
+import iostream;
+import chrono;
+import thread;
+import string_view;
+import syncstream;
+import bitset;
+import functional;
+import numeric;
+import random;
+import coroutine;
+
+#elif _WIN32
 #include <cmath> // get the standard-library math function interface including sqrt()
-#include <locale.h>
-#include <windows.h> 
 #include <filesystem>
 #include <vector> 
 #include <string> 
@@ -22,11 +44,19 @@ import Complejo;
 #include <numeric>
 #include <random>
 #include <coroutine>
+
+#include <windows.h>
+#else
+// Ot her OS
+#endif
+
+#include <locale.h>
 #include "ficheroPrueba.h"
+
 
 using namespace std; 
 /* 
-* Sobre cómo matar procesos
+* Sobre cï¿½mo matar procesos
 * 
 taskkill / f / t / PID 13788
 
@@ -53,7 +83,7 @@ void libroantesde345()
     testVector[3] = 3.3;
 
     using namespace std;
-    cout << "Ejemplo vector y módulo " << sqrt_sum(testVector) << endl;
+    cout << "Ejemplo vector y mï¿½dulo " << sqrt_sum(testVector) << endl;
 
     funcionPrueba();
 
@@ -84,13 +114,13 @@ void libro345()
     cout << z3;
 
     /* 
-    cout << "Dame nombre y valor, ¡ leñe !: \n";
+    cout << "Dame nombre y valor, ï¿½ leï¿½e !: \n";
 
     auto e = read_entry345(cin);
 
     cout << "{ " << e.name << " , " << e.value << " }\n";
 
-    cout << "Dame de nuevo nombre y valor, ¡ leñe !: \n";
+    cout << "Dame de nuevo nombre y valor, ï¿½ leï¿½e !: \n";
     auto [n, v] = read_entry345(cin);
     cout << "{ " << n << " , " << v << " }\n";
     */
@@ -186,7 +216,7 @@ Vector init63(int n)
     /* 
     std::vector<thread> my_threads;
     std::thread t{ 1 }; // run heartbeat concurrently(in a separate thread)
-    my_threads.push_back(std::move(t)); // move t into my_threads(§16.6)
+    my_threads.push_back(std::move(t)); // move t into my_threads(ï¿½16.6)
         // ... more initialization ...
     */ 
     Vector vec(n);
@@ -200,7 +230,7 @@ void libro63()
 {
     using namespace std;
     auto v = init63(10); // start heartbeat and initialize v
-    cout << "Tamaño " << v.size() << ". Valor del 1º: " << v[0] << endl;
+    cout << "Tamaï¿½o " << v.size() << ". Valor del 1ï¿½: " << v[0] << endl;
 
 
     int i = 2, j = 4;
@@ -277,7 +307,7 @@ void f73(const std::vector<int>& vec, const std::list<std::string>& lst, int x, 
         << ": " << count(lst, [&](const string& a) { return a < s; }) << '\n';
 
     // The[&] is a capture list specifying that all local names used in the lambda body (such as x) will be accessed through references.Had we wanted to
-    // “capture” only x, we could have said so : [&x] .Had we wanted to give the generated object a copy of x, we could have said so : [x] .Capture
+    // ï¿½captureï¿½ only x, we could have said so : [&x] .Had we wanted to give the generated object a copy of x, we could have said so : [x] .Capture
     // nothing is[], capture all local names used by reference is[&], and capture all local names used by value is[=].
     // 
     // For a lambda defined within a member function, [this] captures the current object by reference so that we can refer to class members.
@@ -298,7 +328,7 @@ void libro73()
     Less_than<string> lts2{ "Naur" }; // "Naur" is a C-style string, so we need <string> to get the right <
 
     lti(90) ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
-    lts2("Maná") ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
+    lts2("Manï¿½") ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
     lts2("ZZZZ") ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
     
 }
@@ -309,14 +339,14 @@ void libro8()
     bool b1 = compara(2, 3); // OK: returns true
     // bool b2 = compara(2 + 3i, 3 + 4i); // error: complex<double> doesn't support
 
-    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "más", "Menos"s);
+    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "mï¿½s", "Menos"s);
 
 }
 
 void libro9()
 {
     // auto c2 = 1.0 + 3.0std::complex_literals::i;
-    // To use the s suffix, you need to use the namespace std::literals::string_literals(§6.6).
+    // To use the s suffix, you need to use the namespace std::literals::string_literals(ï¿½6.6).
     auto cat = "Cat"s;
 
     // using namespace literals::complex_literals; // Esto NO FUNCIONA EN VISUAL C++
@@ -368,15 +398,15 @@ void libro10Regexp()
         return;
     }
     //    regex pat{ R"(\w{2}\s*\d{5}(-\d{4})?)" }; 
-    // regex pat{ R"(\d{4}(-?)\w{3})" }; // Matrícula
-    // regex pat{ R"(\d{4}(-?)\w{3-4})" }; // Matrícula con 3 o 4 letrasa{m} 
-    // exactly m a’s
-    // a{ m, } - at least m a’s
-    // a{ m,n } - at least m but at most n a’s
-    // 3 o 4 dígitos / ^ [0 - 9] {3, 4}$ /
+    // regex pat{ R"(\d{4}(-?)\w{3})" }; // Matrï¿½cula
+    // regex pat{ R"(\d{4}(-?)\w{3-4})" }; // Matrï¿½cula con 3 o 4 letrasa{m} 
+    // exactly m aï¿½s
+    // a{ m, } - at least m aï¿½s
+    // a{ m,n } - at least m but at most n aï¿½s
+    // 3 o 4 dï¿½gitos / ^ [0 - 9] {3, 4}$ /
         
-    // regex pat{ R"(\d{4}(-?)[a-z]{3})" }; // Matrícula
-    regex pat{ R"(\d{4}(?:-?)[A-Za-z]{3})" }; // Matrícula
+    // regex pat{ R"(\d{4}(-?)[a-z]{3})" }; // Matrï¿½cula
+    regex pat{ R"(\d{4}(?:-?)[A-Za-z]{3})" }; // Matrï¿½cula
           
     int lineno = 0;
     bool encontrado = false;
@@ -397,7 +427,7 @@ void libro10Regexp()
     }
 
     if (!encontrado)
-        cout << "No se ha encontrado ninguna matrícula en el fichero " << fichMat << " del directorio " << cwd << endl;
+        cout << "No se ha encontrado ninguna matrï¿½cula en el fichero " << fichMat << " del directorio " << cwd << endl;
 
 }
 
@@ -530,7 +560,7 @@ void test14listas()
 void test14x0()
 {
   ostream_iterator<string> oo{ cout }; // write strings to cout
-  vector<string> v{ "¡ Buenos días ", " sean dados !", " a todo el mundo\n" };
+  vector<string> v{ "ï¿½ Buenos dï¿½as ", " sean dados !", " a todo el mundo\n" };
   ranges::copy(v, oo); 
   std::copy(v.begin(), v.end(), oo);
 
@@ -567,7 +597,7 @@ void fs151(span<int> p)
         x = 0;
         ++numElementos;
     }
-    cout << "Número de elementos: " << numElementos << "\n";
+    cout << "Nï¿½mero de elementos: " << numElementos << "\n";
 }
 
 
@@ -606,7 +636,7 @@ void test151(int x)
 void test161()
 {
     /*
-    using namespace std::chrono; // in sub-namespace std::chrono;    see §3.3
+    using namespace std::chrono; // in sub-namespace std::chrono;    see ï¿½3.3
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
     using std::chrono::system_clock;
 
@@ -674,7 +704,7 @@ void test171()
 
 void f181(vector<double>& v) // function
 {
-    using namespace std::chrono; // in sub-namespace std::chrono;    see §3.3
+    using namespace std::chrono; // in sub-namespace std::chrono;    see ï¿½3.3
     osyncstream oss(cout);
 
     oss << "f181 1" << "\n";
@@ -685,13 +715,13 @@ struct F181 { // function object
     vector<double>& v;
     F181(vector<double>& vv) :v{ vv } { }
     void operator()() {
-        using namespace std::chrono; // in sub-namespace std::chrono;    see §3.3
+        using namespace std::chrono; // in sub-namespace std::chrono;    see ï¿½3.3
         osyncstream oss(cout);
 
         oss << "F181 1" << "\n";
         std::this_thread::sleep_for(nanoseconds(1000));
         oss << "F181 2" << "\n";
-    }; // F's call operator (§7.3.2)
+    }; // F's call operator (ï¿½7.3.2)
 };
 
 void test181()
@@ -718,15 +748,21 @@ void test182()
     for (auto p : events) // clean up
         delete p;
 }
-void enEspañol()
+#ifdef __linux__ 
+void enEspanyol()
+#elif _WIN32
+void enEspaï¿½ol()
+#else
+void enEspanyol()
+#endif
 {
-    // Establecer el idioma a español
-    setlocale(LC_ALL, "spanish"); // Cambiar locale - Suficiente para máquinas Linux
-    SetConsoleCP(CP_UTF8); // Cambiar STDIN -  NO FUNCIONA PARA ESPAÑOL
-    SetConsoleOutputCP(CP_UTF8); // Cambiar STDOUT - NO FUNCIONA PARA ESPAÑOL
+    // Establecer el idioma a espaï¿½ol
+    setlocale(LC_ALL, "spanish"); // Cambiar locale - Suficiente para mï¿½quinas Linux
+    SetConsoleCP(CP_UTF8); // Cambiar STDIN -  NO FUNCIONA PARA ESPAï¿½OL
+    SetConsoleOutputCP(CP_UTF8); // Cambiar STDOUT - NO FUNCIONA PARA ESPAï¿½OL
 
-    SetConsoleCP(1252); // Cambiar STDIN -  Sí funciona para español: página 1252 ( "Latin 1 Western Europe")
-    SetConsoleOutputCP(1252); // Cambiar STDOUT -  Sí funciona para español: página 1252 ( "Latin 1 Western Europe")
+    SetConsoleCP(1252); // Cambiar STDIN -  Sï¿½ funciona para espaï¿½ol: pï¿½gina 1252 ( "Latin 1 Western Europe")
+    SetConsoleOutputCP(1252); // Cambiar STDOUT -  Sï¿½ funciona para espaï¿½ol: pï¿½gina 1252 ( "Latin 1 Western Europe")
 
 }
 
@@ -734,16 +770,22 @@ int main(int argc, char* argv[])
 {
     using namespace std;
 
-    enEspañol();
+#ifdef __linux__ 
+     enEspanyol();
+#elif _WIN32
+     enEspaï¿½ol();
+#else
+     enEspanyol();
+#endif
 
-    // libroantesde345();
+   // libroantesde345();
     // libro345();
     /*
     try {
         libro43();
     }
     catch (std::length_error& err) {
-        std::cerr << "Capturada la excepción relanzada desde el punto anterior\n" << err.what() << std::endl;
+        std::cerr << "Capturada la excepciï¿½n relanzada desde el punto anterior\n" << err.what() << std::endl;
     }
     */
     // libro521();

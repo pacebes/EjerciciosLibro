@@ -1,5 +1,18 @@
 #pragma once
-import Vector; // get Vector's interface
+import Vector; 
+
+#ifdef __linux__ 
+import vector;
+import iostream;
+import utility;
+import string;
+import ranges;
+import sstream;
+import exception;
+import type_traits;
+import locale.h;
+
+#elif _WIN32
 #include <vector>
 #include <iostream>
 #include <utility>
@@ -8,7 +21,21 @@ import Vector; // get Vector's interface
 #include <sstream>
 #include <exception>
 #include <type_traits>
+#include <locale.h>
+#else
+// Ot her OS
+#endif
+
+
+#ifdef __linux__ 
+    //linux code goes here
+#elif _WIN32
 #include <winrt/Windows.Foundation.h>
+#else
+// Ot her OS
+#endif
+
+
 #include <coroutine>
 #include <random>
 
@@ -34,9 +61,9 @@ Entry345 read_entry345(std::istream& is);
 class Container {
 public:
 	virtual double& operator[](int) = 0; // pure virtual function
-	// virtual int size() const = 0; // const member function (§5.2.1)
+	// virtual int size() const = 0; // const member function (ï¿½5.2.1)
 	virtual int size() = 0; 
-	virtual ~Container() {} // destructor (§5.2.2)
+	virtual ~Container() {} // destructor (ï¿½5.2.2)
 };
 
 class Vector_container : public Container { // Vector_container	implements Container
@@ -235,7 +262,7 @@ private:
 	static ostringstream cnvt;
 };
 
-// ostringstream DivideByZeroException::cnvt; // Se lleva al fichero de implementación
+// ostringstream DivideByZeroException::cnvt; // Se lleva al fichero de implementaciï¿½n
 
 /*
 template<typename C, typename V>

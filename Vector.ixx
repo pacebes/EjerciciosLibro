@@ -1,3 +1,4 @@
+module;
 #include <stdexcept>
 #include <iostream> 
 #include <string> 
@@ -79,10 +80,10 @@ Vector& Vector::operator=(const Vector& a) // copy assignment
 }
 
 Vector::Vector(Vector&& a) // move constructor
- // The && means “rvalue reference” and is a reference to which we can bind an rvalue.The word “rvalue” is intended to complement
- // “lvalue, ” which roughly means “something that can appear on the left - hand side of an assignment”[Stroustrup, 2010].So an rvalue is
- // - to a first approximation – a value that you can’t assign to, such as an integer returned by a function call.Thus, an rvalue reference is a
- // reference to something that nobody else can assign to, so we can safely “steal” its value.The res local variable in operator+() for Vectors is an example.
+ // The && means ï¿½rvalue referenceï¿½ and is a reference to which we can bind an rvalue.The word ï¿½rvalueï¿½ is intended to complement
+ // ï¿½lvalue, ï¿½ which roughly means ï¿½something that can appear on the left - hand side of an assignmentï¿½[Stroustrup, 2010].So an rvalue is
+ // - to a first approximation ï¿½ a value that you canï¿½t assign to, such as an integer returned by a function call.Thus, an rvalue reference is a
+ // reference to something that nobody else can assign to, so we can safely ï¿½stealï¿½ its value.The res local variable in operator+() for Vectors is an example.
 	:elem{ a.elem }, // "grab the elements" from a
 	sz{ a.sz }
 {
