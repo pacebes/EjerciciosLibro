@@ -56,7 +56,7 @@ import coroutine;
 
 using namespace std; 
 /* 
-* Sobre c�mo matar procesos
+* Sobre c mo matar procesos
 * 
 taskkill / f / t / PID 13788
 
@@ -83,7 +83,7 @@ void libroantesde345()
     testVector[3] = 3.3;
 
     using namespace std;
-    cout << "Ejemplo vector y m�dulo " << sqrt_sum(testVector) << endl;
+    cout << "Ejemplo vector y m dulo " << sqrt_sum(testVector) << endl;
 
     funcionPrueba();
 
@@ -114,13 +114,13 @@ void libro345()
     cout << z3;
 
     /* 
-    cout << "Dame nombre y valor, � le�e !: \n";
+    cout << "Dame nombre y valor,   le e !: \n";
 
     auto e = read_entry345(cin);
 
     cout << "{ " << e.name << " , " << e.value << " }\n";
 
-    cout << "Dame de nuevo nombre y valor, � le�e !: \n";
+    cout << "Dame de nuevo nombre y valor,   le e !: \n";
     auto [n, v] = read_entry345(cin);
     cout << "{ " << n << " , " << v << " }\n";
     */
@@ -216,7 +216,7 @@ Vector init63(int n)
     /* 
     std::vector<thread> my_threads;
     std::thread t{ 1 }; // run heartbeat concurrently(in a separate thread)
-    my_threads.push_back(std::move(t)); // move t into my_threads(�16.6)
+    my_threads.push_back(std::move(t)); // move t into my_threads( 16.6)
         // ... more initialization ...
     */ 
     Vector vec(n);
@@ -230,7 +230,7 @@ void libro63()
 {
     using namespace std;
     auto v = init63(10); // start heartbeat and initialize v
-    cout << "Tama�o " << v.size() << ". Valor del 1�: " << v[0] << endl;
+    cout << "Tama o " << v.size() << ". Valor del 1 : " << v[0] << endl;
 
 
     int i = 2, j = 4;
@@ -307,7 +307,7 @@ void f73(const std::vector<int>& vec, const std::list<std::string>& lst, int x, 
         << ": " << count(lst, [&](const string& a) { return a < s; }) << '\n';
 
     // The[&] is a capture list specifying that all local names used in the lambda body (such as x) will be accessed through references.Had we wanted to
-    // �capture� only x, we could have said so : [&x] .Had we wanted to give the generated object a copy of x, we could have said so : [x] .Capture
+    //  capture  only x, we could have said so : [&x] .Had we wanted to give the generated object a copy of x, we could have said so : [x] .Capture
     // nothing is[], capture all local names used by reference is[&], and capture all local names used by value is[=].
     // 
     // For a lambda defined within a member function, [this] captures the current object by reference so that we can refer to class members.
@@ -328,7 +328,7 @@ void libro73()
     Less_than<string> lts2{ "Naur" }; // "Naur" is a C-style string, so we need <string> to get the right <
 
     lti(90) ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
-    lts2("Man�") ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
+    lts2("Man ") ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
     lts2("ZZZZ") ? cout << "Menor " << endl : cout << "Mayor o igual" << endl;
     
 }
@@ -339,14 +339,14 @@ void libro8()
     bool b1 = compara(2, 3); // OK: returns true
     // bool b2 = compara(2 + 3i, 3 + 4i); // error: complex<double> doesn't support
 
-    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m�s", "Menos"s);
+    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m s", "Menos"s);
 
 }
 
 void libro9()
 {
     // auto c2 = 1.0 + 3.0std::complex_literals::i;
-    // To use the s suffix, you need to use the namespace std::literals::string_literals(�6.6).
+    // To use the s suffix, you need to use the namespace std::literals::string_literals( 6.6).
     auto cat = "Cat"s;
 
     // using namespace literals::complex_literals; // Esto NO FUNCIONA EN VISUAL C++
@@ -398,15 +398,15 @@ void libro10Regexp()
         return;
     }
     //    regex pat{ R"(\w{2}\s*\d{5}(-\d{4})?)" }; 
-    // regex pat{ R"(\d{4}(-?)\w{3})" }; // Matr�cula
-    // regex pat{ R"(\d{4}(-?)\w{3-4})" }; // Matr�cula con 3 o 4 letrasa{m} 
-    // exactly m a�s
-    // a{ m, } - at least m a�s
-    // a{ m,n } - at least m but at most n a�s
-    // 3 o 4 d�gitos / ^ [0 - 9] {3, 4}$ /
+    // regex pat{ R"(\d{4}(-?)\w{3})" }; // Matr cula
+    // regex pat{ R"(\d{4}(-?)\w{3-4})" }; // Matr cula con 3 o 4 letrasa{m} 
+    // exactly m a s
+    // a{ m, } - at least m a s
+    // a{ m,n } - at least m but at most n a s
+    // 3 o 4 d gitos / ^ [0 - 9] {3, 4}$ /
         
-    // regex pat{ R"(\d{4}(-?)[a-z]{3})" }; // Matr�cula
-    regex pat{ R"(\d{4}(?:-?)[A-Za-z]{3})" }; // Matr�cula
+    // regex pat{ R"(\d{4}(-?)[a-z]{3})" }; // Matr cula
+    regex pat{ R"(\d{4}(?:-?)[A-Za-z]{3})" }; // Matr cula
           
     int lineno = 0;
     bool encontrado = false;
@@ -427,7 +427,7 @@ void libro10Regexp()
     }
 
     if (!encontrado)
-        cout << "No se ha encontrado ninguna matr�cula en el fichero " << fichMat << " del directorio " << cwd << endl;
+        cout << "No se ha encontrado ninguna matr cula en el fichero " << fichMat << " del directorio " << cwd << endl;
 
 }
 
@@ -560,7 +560,7 @@ void test14listas()
 void test14x0()
 {
   ostream_iterator<string> oo{ cout }; // write strings to cout
-  vector<string> v{ "� Buenos d�as ", " sean dados !", " a todo el mundo\n" };
+  vector<string> v{ "  Buenos d as ", " sean dados !", " a todo el mundo\n" };
   ranges::copy(v, oo); 
   std::copy(v.begin(), v.end(), oo);
 
@@ -597,7 +597,7 @@ void fs151(span<int> p)
         x = 0;
         ++numElementos;
     }
-    cout << "N�mero de elementos: " << numElementos << "\n";
+    cout << "N mero de elementos: " << numElementos << "\n";
 }
 
 
@@ -636,7 +636,7 @@ void test151(int x)
 void test161()
 {
     /*
-    using namespace std::chrono; // in sub-namespace std::chrono;    see �3.3
+    using namespace std::chrono; // in sub-namespace std::chrono;    see  3.3
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
     using std::chrono::system_clock;
 
@@ -704,7 +704,7 @@ void test171()
 
 void f181(vector<double>& v) // function
 {
-    using namespace std::chrono; // in sub-namespace std::chrono;    see �3.3
+    using namespace std::chrono; // in sub-namespace std::chrono;    see  3.3
     osyncstream oss(cout);
 
     oss << "f181 1" << "\n";
@@ -715,13 +715,13 @@ struct F181 { // function object
     vector<double>& v;
     F181(vector<double>& vv) :v{ vv } { }
     void operator()() {
-        using namespace std::chrono; // in sub-namespace std::chrono;    see �3.3
+        using namespace std::chrono; // in sub-namespace std::chrono;    see  3.3
         osyncstream oss(cout);
 
         oss << "F181 1" << "\n";
         std::this_thread::sleep_for(nanoseconds(1000));
         oss << "F181 2" << "\n";
-    }; // F's call operator (�7.3.2)
+    }; // F's call operator ( 7.3.2)
 };
 
 void test181()
@@ -751,18 +751,18 @@ void test182()
 #ifdef __linux__ 
 void enEspanyol()
 #elif _WIN32
-void enEspa�ol()
+void enEspa ol()
 #else
 void enEspanyol()
 #endif
 {
-    // Establecer el idioma a espa�ol
-    setlocale(LC_ALL, "spanish"); // Cambiar locale - Suficiente para m�quinas Linux
-    SetConsoleCP(CP_UTF8); // Cambiar STDIN -  NO FUNCIONA PARA ESPA�OL
-    SetConsoleOutputCP(CP_UTF8); // Cambiar STDOUT - NO FUNCIONA PARA ESPA�OL
+    // Establecer el idioma a espa ol
+    setlocale(LC_ALL, "spanish"); // Cambiar locale - Suficiente para m quinas Linux
+    SetConsoleCP(CP_UTF8); // Cambiar STDIN -  NO FUNCIONA PARA ESPA OL
+    SetConsoleOutputCP(CP_UTF8); // Cambiar STDOUT - NO FUNCIONA PARA ESPA OL
 
-    SetConsoleCP(1252); // Cambiar STDIN -  S� funciona para espa�ol: p�gina 1252 ( "Latin 1 Western Europe")
-    SetConsoleOutputCP(1252); // Cambiar STDOUT -  S� funciona para espa�ol: p�gina 1252 ( "Latin 1 Western Europe")
+    SetConsoleCP(1252); // Cambiar STDIN -  S  funciona para espa ol: p gina 1252 ( "Latin 1 Western Europe")
+    SetConsoleOutputCP(1252); // Cambiar STDOUT -  S  funciona para espa ol: p gina 1252 ( "Latin 1 Western Europe")
 
 }
 
@@ -773,7 +773,7 @@ int main(int argc, char* argv[])
 #ifdef __linux__ 
      enEspanyol();
 #elif _WIN32
-     enEspa�ol();
+     enEspa ol();
 #else
      enEspanyol();
 #endif
@@ -785,7 +785,7 @@ int main(int argc, char* argv[])
         libro43();
     }
     catch (std::length_error& err) {
-        std::cerr << "Capturada la excepci�n relanzada desde el punto anterior\n" << err.what() << std::endl;
+        std::cerr << "Capturada la excepci n relanzada desde el punto anterior\n" << err.what() << std::endl;
     }
     */
     // libro521();
@@ -820,5 +820,12 @@ int main(int argc, char* argv[])
     cout << "Parche ejemplo con GIT en un rama (parte2) \n";
 
     cout << "Mensaje en la rama principal \n";
+
+    cout << "Mensaje 1 parche 2\n";
+
+    cout << "Nuevo mensaje en la rama principal \n";
+
+    cout << "Mensaje 2 parche 2\n";
+
 
 }
