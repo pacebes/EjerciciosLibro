@@ -1,29 +1,13 @@
-import Vector; // get Vector's interface
+#ifdef WIN32
 import Complejo; 
+import Vector; 
+#include <windows.h>
+#elif __linux__
+#include "Vector.h"
+#else
+// Ot her OS
+#endif
 
-#ifdef __linux__ 
-import cmath;
-import filesystem;
-import vector;
-import string;
-import map;
-import complex;
-import list;
-import stdexcept;
-import regex;
-import fstream;
-import iostream;
-import chrono;
-import thread;
-import string_view;
-import syncstream;
-import bitset;
-import functional;
-import numeric;
-import random;
-import coroutine;
-
-#elif _WIN32
 #include <cmath> // get the standard-library math function interface including sqrt()
 #include <filesystem>
 #include <vector> 
@@ -44,14 +28,13 @@ import coroutine;
 #include <numeric>
 #include <random>
 #include <coroutine>
+#include <ranges>
+#include <span>
 
-#include <windows.h>
-#else
-// Ot her OS
-#endif
 
 #include <locale.h>
 #include "ficheroPrueba.h"
+#include "Complejo.hpp"
 
 
 using namespace std; 
@@ -179,6 +162,7 @@ void libro523()
 
     Vector v1 = { 1, 2, 3, 4, 5 }; // v1 has 5 elements
     Vector v2 = { 1.23, 3.45, 6.7, 8 }; // v2 has 4 elements
+    cout << "Introduce valores 'double' acabando con control-D ";
     Vector v = read523(cin); // no copy of Vector elements here
 
     cout << v.size() << " " << v[0] << endl;
@@ -560,7 +544,14 @@ void test14listas()
 void test14x0()
 {
   ostream_iterator<string> oo{ cout }; // write strings to cout
+  #ifdef WIN32
   vector<string> v{ "  Buenos d as ", " sean dados !", " a todo el mundo\n" };
+#elif __linux__
+  vector<string> v{ "  Buenos días ", " sean dados !", " a todo el mundo\n" };
+#else
+  vector<string> v{ "  Buenos días ", " sean dados !", " a todo el mundo\n" };
+#endif
+
   ranges::copy(v, oo); 
   std::copy(v.begin(), v.end(), oo);
 
@@ -570,7 +561,7 @@ void test14x0()
 
 void test14x1()
 {
-    auto r = ranges::iota_view(42, 52);
+    auto r = std::ranges::iota_view(42, 52);
     for (int x : r) // 42 43 44 45 46 47 48 49 50 51
         cout << x << ' ';
 
@@ -635,6 +626,52 @@ void test151(int x)
 
 void test161()
 {
+#ifdef __GNUG__
+  /* Compiler is gcc/g++ */
+
+    using namespace std::chrono; // in sub-namespace std::chrono;    see  3.3
+    using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
+    using std::chrono::system_clock;
+
+    auto t0 = system_clock::now();
+    std::this_thread::sleep_for(nanoseconds(10000000));
+    auto t1 = system_clock::now();
+
+    // cout << t1 - t0 << "\n"; // default unit: 20223[1 / 100000000]s
+    cout << duration_cast<milliseconds>(t1 - t0).count() << "ms\n";   // specify unit: 2ms
+    cout << duration_cast<nanoseconds>(t1 - t0).count() << "ns\n";   // specify unit: 2022300ns
+
+    sys_days t = sys_days{ February / 25 / 2022 }; // get a time point with the precision of days
+    t += days{ 7 }; // one week after    February 25, 2022
+    auto d = year_month_day(t); // convert the time point    back to the calendar
+
+    // const std::chrono::time_point now{std::chrono::system_clock::now()};
+    // const std::chrono::year_month_day ymd{std::chrono::floor<std::chrono::days>(now)};
+
+
+     std::cout << "Año: " << static_cast<int>(d.year()) << ", "
+                 "Mes: " << static_cast<unsigned>(d.month()) << ", "
+                 "Día : " << static_cast<unsigned>(d.day()) << "\n";
+
+    
+    auto p = make_unique<int>(2);
+    // auto q = p; // error: we can't copy a unique_ptr
+    auto r = move(p); // p now holds nullptr
+
+    double val = 7.2;
+    auto x = bit_cast<uint64_t>(val); // get the bit representation of a 64 - bit floating point number
+    auto y = bit_cast<uint64_t>(&val); // get the bit representation of a 64- bit pointer
+
+    cout << x; 
+    cout << val; 
+    cout << y;
+
+
+#endif
+#ifdef _MSC_VER
+  /* Compiler is Microsoft Visual C++ */
+
+
     /*
     using namespace std::chrono; // in sub-namespace std::chrono;    see  3.3
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
@@ -667,6 +704,10 @@ void test161()
     cout << format("{0:f}; {0:g}; \n", val); 
     cout << format("{0:x} {0:o} {0:d} {0:b} \n", y);
        
+
+#endif
+
+
 
 }
 
@@ -748,14 +789,12 @@ void test182()
     for (auto p : events) // clean up
         delete p;
 }
-#ifdef __linux__ 
+
 void enEspanyol()
-#elif _WIN32
-void enEspa ol()
-#else
-void enEspanyol()
-#endif
 {
+#ifdef __linux__ 
+// Nada
+#elif _WIN32
     // Establecer el idioma a espa ol
     setlocale(LC_ALL, "spanish"); // Cambiar locale - Suficiente para m quinas Linux
     SetConsoleCP(CP_UTF8); // Cambiar STDIN -  NO FUNCIONA PARA ESPA OL
@@ -763,6 +802,9 @@ void enEspanyol()
 
     SetConsoleCP(1252); // Cambiar STDIN -  S  funciona para espa ol: p gina 1252 ( "Latin 1 Western Europe")
     SetConsoleOutputCP(1252); // Cambiar STDOUT -  S  funciona para espa ol: p gina 1252 ( "Latin 1 Western Europe")
+#else
+// Nada
+#endif
 
 }
 
@@ -770,49 +812,43 @@ int main(int argc, char* argv[])
 {
     using namespace std;
 
-#ifdef __linux__ 
      enEspanyol();
-#elif _WIN32
-     enEspa ol();
-#else
-     enEspanyol();
-#endif
 
-   // libroantesde345();
-    // libro345();
-    /*
+    libroantesde345();
+     libro345();
+    
     try {
         libro43();
     }
     catch (std::length_error& err) {
         std::cerr << "Capturada la excepci n relanzada desde el punto anterior\n" << err.what() << std::endl;
     }
-    */
-    // libro521();
-    // libro523();
-    // Container* p = new Vector_container(10); // OK: Container is an interface for Vector_container
-    // libro61();
-    // libro63();
-    // libro71_a2();
-    // libro73();
-    // libro8();
-    // libro9();
-    // libro10();
-    // libro10Regexp();
-    // libro11();
-    // test13except();
-    // test14listas();
-    // test14x0();
-    // test14x1();
-    // test151(156);
-    // test161();
-    // test171();
-    /*
+    
+     libro521();
+     libro523();
+     Container* p = new Vector_container(10); // OK: Container is an interface for Vector_container
+     libro61();
+     libro63();
+     libro71_a2();
+     libro73();
+     libro8();
+     libro9();
+     libro10();
+     libro10Regexp();
+     libro11();
+     test13except();
+     test14listas();
+     test14x0();
+     test14x1();
+     test151(156);
+     test161();
+     test171();
+    
     for (int i = 0; i < 10; ++i)
     {
         test181();
     }
-    */
+    
     test182();
 
     cout << "Parche ejemplo con GIT en un rama (parte1) \n";

@@ -1,29 +1,9 @@
 #pragma once
+
+#ifdef WIN32
 import Vector; 
-
-#ifdef __linux__ 
-import vector;
-import iostream;
-import utility;
-import string;
-import ranges;
-import sstream;
-import exception;
-import type_traits;
-import locale.h;
-
-#elif _WIN32
-#include <vector>
-#include <iostream>
-#include <utility>
-#include <string>
-#include <ranges>
-#include <sstream>
-#include <exception>
-#include <type_traits>
-#include <locale.h>
-#else
-// Ot her OS
+#elif __linux__
+#include "Vector.h"
 #endif
 
 
@@ -38,6 +18,7 @@ import locale.h;
 
 #include <coroutine>
 #include <random>
+#include <sstream> 
 
 using namespace std;
 
@@ -198,7 +179,7 @@ class Checked_iter {
 public:
 	using value_type = typename C::value_type;
 	using difference_type = int;
-	Checked_iter() { throw bad_exception; } // concept forward_iterator requires a default constructor
+	Checked_iter() { std::bad_exception be; throw be; } // concept forward_iterator requires a default constructor
 	Checked_iter(C& cc) : pc{ &cc } {}
 	Checked_iter(C& cc, typename C::iterator pp) : pc{ &cc }, p{ pp }
 	{}
@@ -211,7 +192,7 @@ public:
 	bool operator==(const Checked_iter& a) const { return p == a.p; }
 	bool operator!=(const Checked_iter& a) const { return p != a.p; }
 private:
-	void check_end() const { if (p == pc->end()) { throw bad_exception;  }; }
+	void check_end() const { if (p == pc->end()) { std::bad_exception be; throw be;   }; }
 	C* pc{}; // default initialize to nullptr
 	typename C::iterator p = pc->begin();
 };
@@ -259,7 +240,7 @@ private:
 	int numerator;
 	int denominator;
 
-	static ostringstream cnvt;
+	static std::ostringstream cnvt;
 };
 
 // ostringstream DivideByZeroException::cnvt; // Se lleva al fichero de implementaci�n
