@@ -1,12 +1,52 @@
-#ifdef WIN32
+#ifdef _MSC_VER
 import Complejo; 
 import Vector; 
 #include <windows.h>
-#elif __linux__
+#elif __GNUG__
 #include "Vector.h"
 #else
 // Ot her OS
 #endif
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+/* 
+The Predefined Macros for OS site has a very complete list of checks.Here are a few of them, with links to where they're found:
+Windows
+
+_WIN32   Both 32 bit and 64 bit
+_WIN64   64 bit only
+__CYGWIN__
+Unix(Linux, *BSD, but not Mac OS X)
+
+See this related question on some of the pitfalls of using this check.
+
+unix
+__unix
+__unix__
+Mac OS X
+
+__APPLE__ Also used for classic
+__MACH__
+
+Both are defined; checking for either should work.
+Linux
+
+__linux__
+linux Obsolete(not POSIX compliant)
+__linux Obsolete(not POSIX compliant)
+FreeBSD
+
+__FreeBSD__
+Android
+
+__ANDROID__
+
+*/
+
+
 
 #include <cmath> // get the standard-library math function interface including sqrt()
 #include <filesystem>
@@ -325,6 +365,16 @@ void libro8()
 
     imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m s", "Menos"s);
 
+#ifdef _WIN32
+    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "más", "Menos"s);
+#elif __linux__
+    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m s", "Menos"s);
+#else
+    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m s", "Menos"s);
+#endif
+
+
+
 }
 
 void libro9()
@@ -544,8 +594,8 @@ void test14listas()
 void test14x0()
 {
   ostream_iterator<string> oo{ cout }; // write strings to cout
-  #ifdef WIN32
-  vector<string> v{ "  Buenos d as ", " sean dados !", " a todo el mundo\n" };
+#ifdef _WIN32
+  vector<string> v{ "  Buenos días ", " sean dados !", " a todo el mundo\n" };
 #elif __linux__
   vector<string> v{ "  Buenos dÃ­as ", " sean dados !", " a todo el mundo\n" };
 #else

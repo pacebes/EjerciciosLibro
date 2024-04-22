@@ -1,24 +1,19 @@
 #pragma once
-
-#ifdef WIN32
+#ifdef _MSC_VER
 import Vector; 
-#elif __linux__
+#elif __GNUG__
 #include "Vector.h"
-#endif
-
-
-#ifdef __linux__ 
-    //linux code goes here
-#elif _WIN32
-#include <winrt/Windows.Foundation.h>
-#else
-// Ot her OS
 #endif
 
 
 #include <coroutine>
 #include <random>
 #include <sstream> 
+
+#ifdef _WIN32
+#include <winrt/Windows.Foundation.h>
+#endif
+
 
 using namespace std;
 
