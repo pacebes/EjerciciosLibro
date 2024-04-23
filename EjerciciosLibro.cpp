@@ -1,11 +1,6 @@
 #ifdef _MSC_VER
 import Complejo; 
 import Vector; 
-#include <windows.h>
-#elif __GNUG__
-#include "Vector.h"
-#else
-// Ot her OS
 #endif
 
 #ifdef _WIN32
@@ -47,7 +42,6 @@ __ANDROID__
 */
 
 
-
 #include <cmath> // get the standard-library math function interface including sqrt()
 #include <filesystem>
 #include <vector> 
@@ -74,8 +68,13 @@ __ANDROID__
 
 #include <locale.h>
 #include "ficheroPrueba.h"
-#include "Complejo.hpp"
 
+#if __GNUG__
+#include "Complejo.hpp"
+#include "Vector.h"
+#endif
+
+#include "EjerciciosLibro.h"
 
 using namespace std; 
 /* 
@@ -861,6 +860,9 @@ void enEspanyol()
 int main(int argc, char* argv[])
 {
     using namespace std;
+
+    cout << argv[0] << " Version " << EjerciciosLibro_VERSION_MAJOR << "." << EjerciciosLibro_VERSION_MINOR << std::endl;
+
 
      enEspanyol();
 

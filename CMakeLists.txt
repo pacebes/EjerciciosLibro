@@ -7,16 +7,32 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 cmake_policy(SET CMP0076 NEW)
 
+if (UNIX)
 set(CMAKE_CXX_FLAGS "-fcoroutines -pthread -fmodules-ts" )
+endif (UNIX)
 
-project(ejercicioslibro)
+project(ejercicioslibro VERSION 1.0)
 
+configure_file(EjerciciosLibro.h.in EjerciciosLibro.h)
+
+						   
+if (UNIX)
 set(SOURCE_FILES
     Vector.cpp
     EjerciciosLibro.cpp
     ficheroPrueba.cpp
 	)
+endif (UNIX)
 
+
+if (WIN32)
+set(SOURCE_FILES
+    Vector.ixx
+	Complejo.ixx
+    EjerciciosLibro.cpp
+    ficheroPrueba.cpp
+	)
+endif (WIN32)
 
 add_executable(ejercicioslibro)
 
@@ -24,6 +40,11 @@ target_sources(ejercicioslibro
     PUBLIC
    ${SOURCE_FILES}
 )
+
+target_include_directories(ejercicioslibro PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           )
+
 
 ## 
 ## Playing with Modules in Ubuntu

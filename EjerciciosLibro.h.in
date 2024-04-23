@@ -1,0 +1,7 @@
+#pragma once
+
+#define EjerciciosLibro_VERSION_MAJOR @ejercicioslibro_VERSION_MAJOR@
+#define EjerciciosLibro_VERSION_MINOR @ejercicioslibro_VERSION_MINOR@
+
+
+
