@@ -28,8 +28,8 @@ namespace My_code {
 int sum(const std::vector<int>& v);
 
 struct Entry345 {
-    std::string name;
-    int value;
+	std::string name;
+	int value;
 };
 
 Entry345 read_entry345(std::istream& is);
@@ -38,7 +38,7 @@ class Container {
 public:
 	virtual double& operator[](int) = 0; // pure virtual function
 	// virtual int size() const = 0; // const member function (�5.2.1)
-	virtual int size() = 0; 
+	virtual int size() = 0;
 	virtual ~Container() {} // destructor (�5.2.2)
 };
 
@@ -98,19 +98,19 @@ concept Equality_comparable =
 // static_assert(equality_comparable<S>);
 
 static_assert(equality_comparable<int>);
-static_assert(Equality_comparable<int, double>); 
+static_assert(Equality_comparable<int, double>);
 
 template<typename T, typename U = T>
 concept Number =
 	requires(T x, U y) { // Something with arithmetic operations and a zero
-	x + y; x - y; x* y; x / y; x % y;
+	x + y; x - y; x* y; x / y; x% y;
 	x += y; x -= y; x *= y; x /= y; x %= y;
 	x = x; // copy
 	x = 0;
 };
 
 template<typename T, typename U = T>
-concept Arithmetic = Number<T, U> && Number<U, T>;
+concept Arithmetic = Number<T, U>&& Number<U, T>;
 
 template<equality_comparable T>
 bool compara(T a, T b)
@@ -128,7 +128,7 @@ Val accumulate(Iter first, Iter last, Val res)
 
 // concept Sequence = input_range<S>; // simple to write and general
 
-/* 
+/*
 template<typename S>
 concept Sequence = requires (S a) {
 	typename range_value_t<S>; // S must have a value type
@@ -187,7 +187,7 @@ public:
 	bool operator==(const Checked_iter& a) const { return p == a.p; }
 	bool operator!=(const Checked_iter& a) const { return p != a.p; }
 private:
-	void check_end() const { if (p == pc->end()) { std::bad_exception be; throw be;   }; }
+	void check_end() const { if (p == pc->end()) { std::bad_exception be; throw be; }; }
 	C* pc{}; // default initialize to nullptr
 	typename C::iterator p = pc->begin();
 };
@@ -308,7 +308,7 @@ struct task {
 		suspend_always final_suspend() noexcept { return {}; } //		co_return
 		suspend_always yield_value(int) { return {}; } //		co_yield
 		auto get_return_object() {
-			return task {
+			return task{
 handle_type::from_promise(*this)
 			};
 		}
@@ -322,7 +322,7 @@ handle_type::from_promise(*this)
 
 task char_seq(char start);
 task sequencer(int start, int step = 1);
-task string_seq (string start);
+task string_seq(string start);
 
 struct Event_base {
 	virtual void operator()() = 0;

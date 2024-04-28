@@ -64,10 +64,11 @@ __ANDROID__
 #include <coroutine>
 #include <ranges>
 #include <span>
-
+#include <algorithm>
 
 #include <locale.h>
 #include "ficheroPrueba.h"
+#include "libreriaPruebas.h" 
 
 #if __GNUG__
 #include "Complejo.hpp"
@@ -857,7 +858,8 @@ void enEspanyol()
 
 }
 
-int main(int argc, char* argv[])
+
+void programaInvocadoSinParametros( int argc, char *argv[])
 {
     using namespace std;
 
@@ -877,7 +879,7 @@ int main(int argc, char* argv[])
     }
     
      libro521();
-     libro523();
+     // libro523();
      Container* p = new Vector_container(10); // OK: Container is an interface for Vector_container
      libro61();
      libro63();
@@ -915,5 +917,43 @@ int main(int argc, char* argv[])
 
     cout << "Mensaje 2 parche 2\n";
 
+	escribeNumeroAleatorio(cout, "Número aleatorio alea:");
 
+
+}
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+ 
+bool esNumerico1(std::string const &str)
+{
+    return !str.empty() && std::all_of(str.begin(), str.end(), ::isdigit);
+}
+ 
+bool esNumerico2(std::string const &str)
+{
+    char* p;
+    strtol(str.c_str(), &p, 10);
+    return *p == 0;
+}
+ 
+  
+int main(int argc, char* argv[])
+{
+    using namespace std;
+
+    if (argc == 1) 
+	{
+		programaInvocadoSinParametros(argc, argv);
+	}
+	else if ( (argc != 2) || (esNumerico1(argv[1]) == FALSE) )
+	{	
+      cout << "Uso: " << argv[0] << " numero" << std::endl;
+      // cout << "Uso: " << argv[0] << " número" << std::endl;
+	}
+	else
+	{
+		cout << "La raíz cuadrada de " << argv[1] << " es " << std::sqrt (std::stol(argv[1])) << endl;
+	}
 }
