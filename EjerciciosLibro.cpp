@@ -366,7 +366,7 @@ void libro8()
     imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m s", "Menos"s);
 
 #ifdef _WIN32
-    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "más", "Menos"s);
+    imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "mï¿½s", "Menos"s);
 #elif __linux__
     imprimeTemp("Hola ", 33, "Adios", 4.55665, "\n", "m s", "Menos"s);
 #else
@@ -595,7 +595,7 @@ void test14x0()
 {
   ostream_iterator<string> oo{ cout }; // write strings to cout
 #ifdef _WIN32
-  vector<string> v{ "  Buenos días ", " sean dados !", " a todo el mundo\n" };
+  vector<string> v{ "  Buenos dï¿½as ", " sean dados !", " a todo el mundo\n" };
 #elif __linux__
   vector<string> v{ "  Buenos dÃ­as ", " sean dados !", " a todo el mundo\n" };
 #else
@@ -917,7 +917,7 @@ void programaInvocadoSinParametros( int argc, char *argv[])
 
     cout << "Mensaje 2 parche 2\n";
 
-	escribeNumeroAleatorio(cout, "Número aleatorio alea:");
+	escribeNumeroAleatorio(cout, "Nï¿½mero aleatorio alea:");
 
 
 }
@@ -947,13 +947,13 @@ int main(int argc, char* argv[])
 	{
 		programaInvocadoSinParametros(argc, argv);
 	}
-	else if ( (argc != 2) || (esNumerico1(argv[1]) == FALSE) )
+	else if ( (argc != 2) || (esNumerico1(argv[1]) == false) )
 	{	
       cout << "Uso: " << argv[0] << " numero" << std::endl;
-      // cout << "Uso: " << argv[0] << " número" << std::endl;
+      // cout << "Uso: " << argv[0] << " nï¿½mero" << std::endl;
 	}
 	else
 	{
-		cout << "La raíz cuadrada de " << argv[1] << " es " << std::sqrt (std::stol(argv[1])) << endl;
+		cout << "La raï¿½z cuadrada de " << argv[1] << " es " << std::sqrt (std::stol(argv[1])) << endl;
 	}
 }
