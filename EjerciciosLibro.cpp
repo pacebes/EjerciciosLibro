@@ -69,6 +69,7 @@ __ANDROID__
 #include <locale.h>
 #include "ficheroPrueba.h"
 #include "libreriaPruebas.h" 
+#include "segundaVuelta.h" 
 
 #if __GNUG__
 #include "Complejo.hpp"
@@ -938,14 +939,45 @@ bool esNumerico2(std::string const &str)
     return *p == 0;
 }
  
-  
+
+
+void sv1()
+{
+    using namespace std;
+    using namespace nmsv1;
+
+    Color x { 5 }; 
+
+
+    cout << " red " << int(Color::red) << " blue " << int(Color::blue) << " green" << int(Color::green) << "\n";
+    
+    dimeColorC(x);
+
+    cout << "\nTraffic light\n";
+    Traffic_light y = Traffic_light::green;
+
+    dimeColorTL(y);
+    Traffic_light siguiente = ++y;
+    dimeColorTL(siguiente);
+    cout << "\n";
+}
+
+void segundaVuelta()
+{
+    enEspanyol();
+    sv1();
+
+
+}
+
 int main(int argc, char* argv[])
 {
     using namespace std;
 
     if (argc == 1) 
 	{
-		programaInvocadoSinParametros(argc, argv);
+		// programaInvocadoSinParametros(argc, argv);
+        segundaVuelta();
 	}
 	else if ( (argc != 2) || (esNumerico1(argv[1]) == false) )
 	{	
